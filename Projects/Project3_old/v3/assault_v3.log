@@ -1,0 +1,54 @@
+Metal device set to: Apple M1
+
+systemMemory: 16.00 GB
+maxCacheSize: 5.33 GB
+
+2022-05-01 13:44:49.760161: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:305] Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel may not have been built with NUMA support.
+2022-05-01 13:44:49.760249: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:271] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 0 MB memory) -> physical PluggableDevice (device: 0, name: METAL, pci bus id: <undefined>)
+(36, 80)
+Model: "dual_input_model"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ board_input (InputLayer)       [(None, 36, 80, 4)]  0           []                               
+                                                                                                  
+ conv1 (Conv2D)                 (None, 16, 38, 32)   3232        ['board_input[0][0]']            
+                                                                                                  
+ max_pooling2d (MaxPooling2D)   (None, 8, 19, 32)    0           ['conv1[0][0]']                  
+                                                                                                  
+ conv2 (Conv2D)                 (None, 2, 4, 16)     8208        ['max_pooling2d[0][0]']          
+                                                                                                  
+ health_input (InputLayer)      [(None, 1, 2, 4)]    0           []                               
+                                                                                                  
+ max_pooling2d_1 (MaxPooling2D)  (None, 1, 2, 16)    0           ['conv2[0][0]']                  
+                                                                                                  
+ health_conv1 (Conv2D)          (None, 1, 2, 1)      5           ['health_input[0][0]']           
+                                                                                                  
+ flatten (Flatten)              (None, 32)           0           ['max_pooling2d_1[0][0]']        
+                                                                                                  
+ flatten_1 (Flatten)            (None, 2)            0           ['health_conv1[0][0]']           
+                                                                                                  
+ tf.concat (TFOpLambda)         (None, 34)           0           ['flatten[0][0]',                
+                                                                  'flatten_1[0][0]']              
+                                                                                                  
+ dense1 (Dense)                 (None, 256)          8960        ['tf.concat[0][0]']              
+                                                                                                  
+ dense2 (Dense)                 (None, 128)          32896       ['dense1[0][0]']                 
+                                                                                                  
+ output (Dense)                 (None, 5)            645         ['dense2[0][0]']                 
+                                                                                                  
+==================================================================================================
+Total params: 53,946
+Trainable params: 53,946
+Non-trainable params: 0
+__________________________________________________________________________________________________
+  0%|          | 0/5000 [00:00<?, ?it/s]2022-05-01 13:44:50.673760: W tensorflow/core/platform/profile_utils/cpu_utils.cc:128] Failed to get CPU frequency: 0 Hz
+2022-05-01 13:44:50.673982: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:113] Plugin optimizer for device_type GPU is enabled.
+2022-05-01 13:44:53.912464: W tensorflow/python/util/util.cc:368] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.
+  0%|          | 2/5000 [00:03<2:46:34,  2.00s/it]  0%|          | 3/5000 [00:08<4:19:47,  3.12s/it]2022-05-01 13:45:25.539686: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:113] Plugin optimizer for device_type GPU is enabled.
+  0%|          | 4/5000 [00:37<17:36:58, 12.69s/it]  0%|          | 5/5000 [01:55<49:05:49, 35.39s/it]  0%|          | 6/5000 [02:57<61:22:59, 44.25s/it]  0%|          | 7/5000 [04:54<93:54:08, 67.70s/it]  0%|          | 8/5000 [07:11<124:11:52, 89.57s/it]  0%|          | 9/5000 [09:56<156:40:18, 113.01s/it]  0%|          | 10/5000 [13:35<201:40:09, 145.49s/it]  0%|          | 11/5000 [17:32<240:06:36, 173.26s/it]  0%|          | 12/5000 [19:27<215:33:32, 155.58s/it]  0%|          | 13/5000 [24:16<271:34:03, 196.04s/it]  0%|          | 14/5000 [28:21<291:54:11, 210.76s/it]  0%|          | 15/5000 [32:55<318:18:04, 229.87s/it]  0%|          | 16/5000 [38:02<350:24:07, 253.10s/it]  0%|          | 17/5000 [40:43<311:55:44, 225.36s/it]  0%|          | 18/5000 [42:56<273:19:32, 197.51s/it]  0%|          | 19/5000 [46:15<273:55:25, 197.98s/it]  0%|          | 20/5000 [51:12<315:08:02, 227.81s/it]  0%|          | 21/5000 [52:15<246:40:55, 178.36s/it]  0%|          | 22/5000 [55:46<260:13:02, 188.18s/it]  0%|          | 23/5000 [58:30<250:11:17, 180.97s/it]  0%|          | 24/5000 [1:03:47<306:24:31, 221.68s/it]  0%|          | 25/5000 [1:08:15<325:22:30, 235.45s/it]  1%|          | 26/5000 [1:10:44<289:29:55, 209.53s/it]  1%|          | 27/5000 [1:18:01<383:50:25, 277.87s/it]  1%|          | 28/5000 [1:21:30<355:21:10, 257.29s/it]  1%|          | 29/5000 [1:30:32<473:12:35, 342.70s/it]  1%|          | 30/5000 [1:39:53<563:26:59, 408.13s/it]  1%|          | 31/5000 [1:50:22<654:36:34, 474.26s/it]  1%|          | 32/5000 [1:54:36<563:19:01, 408.20s/it]  1%|          | 33/5000 [2:01:31<565:58:13, 410.21s/it]  1%|          | 34/5000 [2:10:19<614:34:41, 445.53s/it]  1%|          | 35/5000 [2:37:59<1117:09:43, 810.03s/it]  1%|          | 36/5000 [2:48:04<1032:10:24, 748.55s/it]  1%|          | 37/5000 [2:59:55<1016:17:03, 737.18s/it]  1%|          | 38/5000 [3:06:03<863:37:01, 626.57s/it]   1%|          | 39/5000 [3:14:37<816:35:29, 592.57s/it]  1%|          | 40/5000 [3:18:49<675:47:24, 490.49s/it]  1%|          | 41/5000 [3:24:50<622:06:30, 451.62s/it]2022-05-02 04:41:35.965 python[90872:7542097] Error getting visible function: 
+ (null) Compiler encountered XPC_ERROR_CONNECTION_INVALID (is the OS shutting down?)
+/AppleInternal/Library/BuildRoots/8d3bda53-8d9c-11ec-abd7-fa6a1964e34e/Library/Caches/com.apple.xbs/Sources/MetalPerformanceShaders/MPSCore/Utility/MPSKernelDAG.mm:675: failed assertion `Error getting visible function: 
+ (null) Compiler encountered XPC_ERROR_CONNECTION_INVALID (is the OS shutting down?)'
+/Users/rchaks/opt/miniforge3/envs/m1_tf/lib/python3.9/multiprocessing/resource_tracker.py:216: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

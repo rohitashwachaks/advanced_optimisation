@@ -23,3 +23,13 @@ Final: scheduled by UT
 ## Important Links
 
 [Coding Assignments for Reinforcement Learning](http://www.incompleteideas.net/book/code/code2nd.html)
+
+
+Google colab hack to prevent it from timing out
+``` Java
+function KeepClicking(){
+   console.log("Clicking");
+   document.querySelector("colab-left-pane").click()
+}setInterval(KeepClicking,60000)
+```
+The _colab-left-pane_ can be any element; preferably non-responsive to mouse-click
