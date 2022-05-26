@@ -33,3 +33,9 @@ function KeepClicking(){
 }setInterval(KeepClicking,60000)
 ```
 The _colab-left-pane_ can be any element; preferably non-responsive to mouse-click
+
+
+
+
+
+[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/huggingface/nlp/blob/master/notebooks/Overview.ipynb)
